@@ -1,12 +1,18 @@
+const { Client } = require("../models/client.model");
 const { Handloan } = require("../models/handLone.model");
 
 // Create a new handloan record
 const createHandloan = async (req, res) => {
   try {
-    const { party_name, transactions } = req.body;
-    const newHandloan = new Handloan({ party_name, transactions });
+
+    const partyId = await Client.findOne({party_name:req.body.party_name})
+    const {_id} = partyId
+    // const { party_name, transactions } = req.body;
+const newData = {...req.body, party_id:_id}
+console.log(newData)
+    const newHandloan = new Handloan(newData);
     await newHandloan.save();
-    res.status(201).json(newHandloan);
+    res.status(201).json(newData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

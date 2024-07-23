@@ -20,6 +20,7 @@ const { ReadingCRouter } = require("./routes/readingC.route");
 // gagan code
 const { clientRouter } = require("./routes/client.route")
 const { handleLoneRouter } = require("./routes/handleLone.route")
+const { dayStartRouter } = require("./routes/dayStart.route")
 require("dotenv").config()
 
 const app = express()
@@ -39,14 +40,14 @@ app.use("/machinelayout", MachineLayoutRouter)
 app.use("/mmwr",MWMRRouter)
 
 // gagan code 
-// app.use("/daystart",dayStartRouter)
+ app.use("/daystart",dayStartRouter)
  app.use("/handloan",handleLoneRouter)
 app.use("/client",clientRouter)
 
 
 
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 
 app.get("/",(req,res)=>{
    res.send("<h1>welcome to marwah server</h1>")
