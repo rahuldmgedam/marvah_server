@@ -55,26 +55,32 @@ const { Schema } = mongoose;
 const handloanSchema = new Schema({
     party_name: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
+       
+    },
+    date:{
+        type: String,
+        default:new Date()
+  
+        
     },
     party_id:{
         type: String,
-        required: true,
+        required: true
     },
     voucher_type: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
+     
     },
     amount:{
         type: Number,
-        required: true,
+        required: true
     },
   
     narration:{
         type: String,
-        required: true,
+        required: true
     },
    
     

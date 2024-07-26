@@ -70,7 +70,7 @@ const createClient = async (req, res) => {
         })
         return res.status(201).json({
             savedClient,
-            message: "Client client created",
+            message: "Client created",
             success: true,
         });
     } catch (err) {
@@ -89,7 +89,47 @@ const getAllClients = async (req, res) => {
     }
 };
 
+
+const updateClient = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { isClosed,party_name } = req.body;
+        const updatedClient = await Client.findByIdAndUpdate({_id:id}, {isClosed,party_name})
+      
+        if (!updatedClient) {
+            return res.status(404).json({ message: 'Client not found' });
+        }
+        if(isClosed){
+            res.status(200).json({msg:"client closed successfully", success:true, updatedClient});    
+        }else{
+            res.status(200).json({msg:"client open successfully", success:true, updatedClient});
+        }
+      
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// const updateClient = async (req, res) => {
+//     try {
+//       const { id } = req.params;
+//       const { party_name } = req.body;
+//       const updatedClient = await Client.findByIdAndUpdate(
+//         id,
+//         { party_name },
+//         { new: true }
+//       );
+//       if (!updatedHandloan) {
+//         return res.status(404).json({ message: 'Client not found' });
+//       }
+//       res.status(200).json(updatedClient);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+//   };
+
 module.exports = {
     createClient,
     getAllClients,
+    updateClient
 }

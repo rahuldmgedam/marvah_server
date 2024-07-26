@@ -42,9 +42,9 @@ const ClientSchema = new Schema(
 
       },
         date: {
-            type: String,
-            default:new Date(),
-            required: true,
+            type: Date,
+            default:new Date()
+            
         },
     },
     {

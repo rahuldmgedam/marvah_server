@@ -2,18 +2,32 @@ const { Client } = require("../models/client.model");
 const { Handloan } = require("../models/handLone.model");
 
 // Create a new handloan record
+// const createHandloan = async (req, res) => {
+//   try {
+
+//     const partyId = await Client.findOne({party_name:req.body.party_name})
+//     const {_id} = partyId;
+//     console.log(partyId)
+//     // const { party_name, transactions } = req.body;
+// const newData = {...req.body, party_id:_id}
+// //console.log(newData)
+//     const newHandloan = new Handloan(newData);
+//     await newHandloan.save();
+//     res.status(201).json(partyId);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 const createHandloan = async (req, res) => {
   try {
 
-    const partyId = await Client.findOne({party_name:req.body.party_name})
-    const {_id} = partyId
-    // const { party_name, transactions } = req.body;
-const newData = {...req.body, party_id:_id}
-console.log(newData)
-    const newHandloan = new Handloan(newData);
-    await newHandloan.save();
-    res.status(201).json(newData);
+console.log(req.body)
+     const newHandloan = new Handloan(req.body);
+     await newHandloan.save();
+    res.status(200).json({msg:"handloan created successfully!",success:true});
   } catch (error) {
+    console.log(error.message)
     res.status(500).json({ message: error.message });
   }
 };
@@ -46,10 +60,10 @@ const getHandloanById = async (req, res) => {
 const updateHandloan = async (req, res) => {
   try {
     const { id } = req.params;
-    const { party_name, transactions } = req.body;
+    const { party_name } = req.body;
     const updatedHandloan = await Handloan.findByIdAndUpdate(
       id,
-      { party_name, transactions },
+      { party_name },
       { new: true }
     );
     if (!updatedHandloan) {
