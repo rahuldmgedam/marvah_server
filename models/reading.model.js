@@ -6,6 +6,10 @@ const readingSchema = mongoose.Schema(
             type:Number,
             required:true,
         },
+        date:{
+            type:Date,
+            required:true,
+            },
         nozzleName:{
             type:String,
             required:true,

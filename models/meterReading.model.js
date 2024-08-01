@@ -1,40 +1,46 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const meterReadingSchema = new Schema(
-  
   {
-  sideNo: {
-    type: Number,
-    required: true
+    sideNo: {
+      type: Number,
+      required: true,
+    },
+    date: {
+      type: String,
+      default: new Date(),
+    },
+    nozzleNo: {
+      type: Number,
+      required: true,
+    },
+    nozzleProduct: {
+      type: String,
+      required: true,
+    },
+    tank: {
+      type: Number,
+      required: true,
+    },
+    opMeterReading: {
+      type: Number,
+      default: null,
+    },
   },
-  nozzleNo: {
-    type: Number,
-    required: true
-  },
-  nozzleProduct: {
-    type: String,
-    required: true
-  },
-  tank: {
-    type: Number,
-    required: true
-  },
-  opMeterReading: {
-    type: Number,
-    default: null
+  {
+    timestamps: true,
   }
-});
+);
 
-const MeterReading = mongoose.model('meter', meterReadingSchema);
-module.exports = {MeterReading}
-
+const MeterReading = mongoose.model("meter", meterReadingSchema);
+module.exports = { MeterReading };
 
 // const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 
 // const meterReadingSchema = new Schema(
-  
+
 //   {
 //   sideNo: {
 //     type: Number,

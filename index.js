@@ -21,6 +21,8 @@ const { ReadingCRouter } = require("./routes/readingC.route");
 const { clientRouter } = require("./routes/client.route")
 const { handleLoneRouter } = require("./routes/handleLone.route")
 const { dayStartRouter } = require("./routes/dayStart.route")
+const { nozzleproductwiseRouter } = require("./routes/nozzleproductwise.route")
+const { fuelSalesRouter } = require("./routes/petrol/fuelSales.route")
 require("dotenv").config()
 
 const app = express()
@@ -28,7 +30,13 @@ app.use(express.json())
 app.use(cors())
 app.use("/tank", TankRouter)
 app.use("/machine",MachineRouter)
+
+//using in m/c layout for 1, 2 side
 app.use("/reading",ReadinRouter);
+//using in m/c layout for 1, 2 side 
+
+app.use("/readingC",ReadingCRouter);
+
 
 //fuels
 app.use("/ms",MsRouter);
@@ -44,10 +52,15 @@ app.use("/mmwr",MWMRRouter)
  app.use("/handloan",handleLoneRouter)
 app.use("/client",clientRouter)
 
+ app.use("/nozzleproductwise",nozzleproductwiseRouter)
+ app.use("/fuelsales",fuelSalesRouter)
 
 
 
-const port = process.env.PORT || 4001;
+
+
+
+const port = 4000 || 4001
 
 app.get("/",(req,res)=>{
    res.send("<h1>welcome to marwah server</h1>")
