@@ -15,7 +15,8 @@ const fuelSalesSchema = new Schema({
   testing: { type: Number },
   saleAct: { type: Number },
   rate: { type: Number },
-  amount: { type: Number },
+  saleActTotal: { type: Number },
+  totalAmount: { type: Number },
 });
 
 module.exports = mongoose.model('fuelSale', fuelSalesSchema);

@@ -23,6 +23,10 @@ const { handleLoneRouter } = require("./routes/handleLone.route")
 const { dayStartRouter } = require("./routes/dayStart.route")
 const { nozzleproductwiseRouter } = require("./routes/nozzleproductwise.route")
 const { fuelSalesRouter } = require("./routes/petrol/fuelSales.route")
+const { variationRouter } = require("./routes/petrol/variation.route")
+const { petrolProductRouter } = require("./routes/petrol/PetrolProduct.routes")
+const { ProductPetrolInvoiceFeedingRouter } = require("./routes/petrol/petrolInvoiceFeeding.routes")
+const { PetrolDecantationRouter } = require("./routes/petrol/petrolDecandation.routes")
 require("dotenv").config()
 
 const app = express()
@@ -53,8 +57,13 @@ app.use("/mmwr",MWMRRouter)
 app.use("/client",clientRouter)
 
  app.use("/nozzleproductwise",nozzleproductwiseRouter)
- app.use("/fuelsales",fuelSalesRouter)
+ app.use("/fuelsales",fuelSalesRouter);
+ app.use("/variation",variationRouter)
+// mukesh code
+ app.use("/petrol",petrolProductRouter)
 
+ app.use("/petrolInvoiceFeeding", ProductPetrolInvoiceFeedingRouter)
+app.use("/petroldecantation", PetrolDecantationRouter)
 
 
 
