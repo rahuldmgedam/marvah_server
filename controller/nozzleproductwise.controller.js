@@ -1,11 +1,8 @@
-const { Data1, Data2, Data3 } = require('../../marwa_backend/models/nozzleproductwise.model'); // Assuming you saved the schema in models.js
+const { Data1, Data2, Data3 } = require('../models/nozzleproductwise.model'); 
 
-// Get data
 const getAllnozzleproductwise = async (req, res) => {
   try {
-    // const Model = getModel(req.params.model);
-    // const data = await Model.find();
-
+    
        const data1 = await Data1.find();
        const data2 = await Data2.find();
        const data3 = await Data3.find();
