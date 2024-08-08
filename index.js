@@ -27,6 +27,8 @@ const { variationRouter } = require("./routes/petrol/variation.route")
 const { petrolProductRouter } = require("./routes/petrol/PetrolProduct.routes")
 const { ProductPetrolInvoiceFeedingRouter } = require("./routes/petrol/petrolInvoiceFeeding.routes")
 const { PetrolDecantationRouter } = require("./routes/petrol/petrolDecandation.routes")
+const { addOilRouter } = require("./routes/oil/addOil.route")
+const { purchaseOilRouter } = require("./routes/oil/purchaseOil.route")
 require("dotenv").config()
 
 const app = express()
@@ -58,13 +60,16 @@ app.use("/client",clientRouter)
 
  app.use("/nozzleproductwise",nozzleproductwiseRouter)
  app.use("/fuelsales",fuelSalesRouter);
- app.use("/variation",variationRouter)
+ app.use("/variation",variationRouter);
+
+ app.use("/addoil",addOilRouter);
+
 // mukesh code
  app.use("/petrol",petrolProductRouter)
 
  app.use("/petrolInvoiceFeeding", ProductPetrolInvoiceFeedingRouter)
 app.use("/petroldecantation", PetrolDecantationRouter)
-
+app.use("/purchaseoil",purchaseOilRouter)
 
 
 
