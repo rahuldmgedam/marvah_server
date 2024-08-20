@@ -1,32 +1,46 @@
 const PurchaseOil = require('../../models/oil/purchaseOil.model'); // path to your model
 
 
-const createPurchaseOil = async (req, res) => {
-    const {
-      invoiceNo,
-      totalAmount,
-      stockInCases,
-      stockInLiters,
-      taxDetails,
-      reports
-    } = req.body;
-  
-    const newPurchaseOil = new PurchaseOil({
-      invoiceNo,
-      totalAmount,
-      stockInCases,
-      stockInLiters,
-      taxDetails,
-      reports
-    });
-  
-    try {
-      const savedPurchaseOil = await newPurchaseOil.save();
-      res.status(201).json(savedPurchaseOil);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+// const createPurchaseOil =  async (req, res) => {
+//   try {
+//     const oilProductData = req.body;
+
+//     // Check if a product with the same _id exists
+//     const existingProduct = await PurchaseOil.findOne({ _id: oilProductData._id });
+
+//     if (existingProduct) {
+//       // If it exists, you may choose to update it instead of inserting a new one
+//       await OilProduct.updateOne({ _id: oilProductData._id }, oilProductData);
+//       res.status(200).json({ message: "Oil product updated successfully" });
+//     } else {
+//       // Otherwise, insert a new document
+//       const newOilProduct = new PurchaseOil(oilProductData);
+//       await newOilProduct.save();
+//       res.status(201).json({ message: "Oil product created successfully" });
+//     }
+//   } catch (error) {
+//     console.error("Error saving oil product data:", error);
+//     res.status(500).json({ error: "Failed to save oil product data" });
+//   }
+// };
+
+
+ const createPurchaseOil =  async (req, res) => {
+  try {
+    const { oilProductData } = req.body;
+
+    // Save each oil product data to the database
+    for (const oilProduct of oilProductData) {
+      const newOilProduct = new PurchaseOil(oilProduct);
+      await newOilProduct.save();
     }
+
+    res.status(201).json({ message: "Oil product data saved successfully" });
+  } catch (error) {
+    console.error("Error saving oil product data:", error);
+    res.status(500).json({ error: "Failed to save oil product data" });
   }
+} 
 
   const getPurchaseOil = async (req, res) => {
     try {
@@ -56,19 +70,21 @@ const createPurchaseOil = async (req, res) => {
 
   const updatePurchaseOil =  async (req, res) => {
     try {
-      const updatedPurchaseOil = await PurchaseOil.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true } // This option returns the updated document
-      );
+      const { id } = req.params;
+      const updatedData = req.body;
   
-      if (!updatedPurchaseOil) {
-        return res.status(404).json({ message: 'Purchase Oil record not found' });
+      const updatedOilProduct = await PurchaseOil.findByIdAndUpdate(id, updatedData, {
+        new: true, // Return the updated document
+      });
+  
+      if (!updatedOilProduct) {
+        return res.status(404).json({ message: "Oil product not found" });
       }
   
-      res.json(updatedPurchaseOil);
+      res.status(200).json(updatedOilProduct);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      console.error("Error updating oil product:", error);
+      res.status(500).json({ error: "Failed to update oil product" });
     }
   }
 
