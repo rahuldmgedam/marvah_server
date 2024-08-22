@@ -82,9 +82,11 @@ const OilProductSchema = new mongoose.Schema({
   sgst: Number,
   tcs: Number,
   totalAmt: Number,
+  totalAmt2:Number,
+  otherDiscount:Number,
+  totInvAmtAct:Number,
   landingPrice: Number,
   difference: Number,
-  otherDiscount:Number,
   totStockAmt:Number
 
 },{timestamps:true});
