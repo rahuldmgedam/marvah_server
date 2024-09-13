@@ -57,6 +57,21 @@ const updatepetrolProductInvoiceFeeding = async (req, res) => {
     }
 }
 
+const newInvoiceEdit = async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  try {
+    const updatedInvoice = await ProductPetrolFeedingModel.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!updatedInvoice) {
+      return res.status(404).send({ message: "Invoice not found" });
+    }
+    res.status(200).send(updatedInvoice);
+  } catch (error) {
+    res.status(500).send({ message: "Error updating invoice", error });
+  }
+}
+
 const updatepetrolProductInvoiceFeedingshow = async (req, res) => {
     const { selectedInvoice } = req.params;
   console.log(selectedInvoice);
@@ -120,7 +135,8 @@ module.exports = {
     getpetrolProductInvoiceFeeding,
     updatepetrolProductInvoiceFeeding,
     deletepetrolProductInvoiceFeeding,
-    updatepetrolProductInvoiceFeedingshow
+    updatepetrolProductInvoiceFeedingshow,
+    newInvoiceEdit
 }
 
 

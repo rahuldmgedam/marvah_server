@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const addOilSchema = mongoose.Schema({
     date: { type: Date, default: Date.now },
     srNo: { type: Number },
+     opStock: { type: Number },
     productName: { type: String },
     grade: { type: String },
     colour: { type: String },

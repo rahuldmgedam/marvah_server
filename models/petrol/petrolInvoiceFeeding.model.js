@@ -18,7 +18,14 @@ const petrolInvoiceFeddingSchema = mongoose.Schema({
     vatlst:{type:Number, required:true},
     vatPercent:{type:Number,},
     date:{type:String, default:new Date()},
-    show:{type:Boolean, default:false}
+    show:{type:Boolean, default:false},
+    productAmountSumTds:{type:Number},
+    tds:{type:Number},
+    lfrPerKl:{type:Number},
+    TotPayableTds:{type:Number},
+    lfrTotal:{type:Number},
+    cgst:{type:Number},
+    sgst:{type:Number},
 },
 {
     versionKey:false

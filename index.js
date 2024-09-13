@@ -34,6 +34,7 @@ const { addOilRouter } = require("./routes/oil/addOil.route")
 const { purchaseOilRouter } = require("./routes/oil/purchaseOil.route")
 const { godownOilRouter } = require("./routes/oil/godownOil.route")
 const { retailOilRouter } = require("./routes/oil/retail.route")
+const { advancesRouter } = require("./routes/advances.route")
 
 require("dotenv").config()
 
@@ -83,7 +84,7 @@ app.use("/credit_client", Credit_Client_Router)
 app.use("/purchaseoil",purchaseOilRouter)
 app.use("/godownoil",godownOilRouter)
 app.use("/retailoil",retailOilRouter)
-
+app.use("/advances",advancesRouter)
 
 
 
