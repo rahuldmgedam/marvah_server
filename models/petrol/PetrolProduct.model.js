@@ -11,6 +11,9 @@ const PetrolProductSchema = mongoose.Schema({
     tcs:{type:Number, required:true},
     tds:{type:Number},
     lfrPerKl:{type:Number},
+    cgst:{type:Number},
+    sgst:{type:Number},
+    tdsLfr:{type:Number}
   
 },{
     versionKey:false,timestamps:true

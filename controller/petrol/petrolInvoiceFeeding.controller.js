@@ -128,7 +128,53 @@ const deletepetrolProductInvoiceFeeding = async(req,res)=>{
     }
 }
 
+const calSumTotals =  async (req, res) => {
+  try {
+    // Get all invoices from the DB
+    const invoices = await ProductPetrolFeedingModel.find();
 
+    // Initialize the totals
+    let productAmountSum = 0;
+    let totalPayableTds = 0;
+    let totalCgst = 0;
+    let totalSgst = 0;
+    let totalLfr = 0;
+
+    // Iterate through the invoices to calculate the required sums
+    invoices.forEach((invoice) => {
+      // Sum of productAmount
+      productAmountSum += invoice.productAmount;
+
+      // Calculate payable TDS (productAmount * tds)
+      totalPayableTds += invoice.productAmount * (invoice.tds || 0);
+
+      // Calculate total CGST and SGST (productAmount * cgst or sgst percentage)
+      totalCgst += invoice.productAmount * (invoice.cgst || 0);
+      totalSgst += invoice.productAmount * (invoice.sgst || 0);
+
+      // Calculate LFR total (lfrPerKl * klQty)
+      if (invoice.lfrPerKl && invoice.klQty) {
+        totalLfr += invoice.lfrPerKl * invoice.klQty;
+      }
+    });
+
+    // Send the calculated totals as a response
+    res.status(200).json({
+      message: 'Calculation successful',
+      productAmountSum,
+      totalPayableTds,
+      totalCgst,
+      totalSgst,
+      totalLfr,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'An error occurred while calculating',
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
     createpetrolProductInvoiceFeeding,
@@ -136,7 +182,8 @@ module.exports = {
     updatepetrolProductInvoiceFeeding,
     deletepetrolProductInvoiceFeeding,
     updatepetrolProductInvoiceFeedingshow,
-    newInvoiceEdit
+    newInvoiceEdit,
+    calSumTotals
 }
 
 
