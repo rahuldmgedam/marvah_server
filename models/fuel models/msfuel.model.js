@@ -8,7 +8,6 @@ const msSchema = mongoose.Schema(
       required: true,
     },
 
-    
     reading: {
       type: Number,
       required: true,

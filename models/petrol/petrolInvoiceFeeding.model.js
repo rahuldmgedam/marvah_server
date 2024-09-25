@@ -24,7 +24,7 @@ const petrolInvoiceFeddingSchema = mongoose.Schema({
     totTaxAmount:{type:Number}, 
     lfrPerKl:{type:Number},
     TotPayableTds:{type:Number},
-    lfrTotal:{type:Number},
+    lfrTaxAmt:{type:Number},
     cgst:{type:Number},
     sgst:{type:Number},
     tdsLfr:{type:Number},
