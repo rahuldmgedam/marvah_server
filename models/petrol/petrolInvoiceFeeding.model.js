@@ -18,10 +18,34 @@ const petrolInvoiceFeddingSchema = mongoose.Schema({
     vatlst:{type:Number, required:true},
     vatPercent:{type:Number,},
     date:{type:String, default:new Date()},
-    show:{type:Boolean, default:false}
+    show:{type:Boolean, default:false},
+    productAmountSumTds:{type:Number},
+    tds:{type:Number},
+    totTaxAmount:{type:Number}, 
+    lfrPerKl:{type:Number},
+    TotPayableTds:{type:Number},
+    lfrTaxAmt:{type:Number},
+    cgst:{type:Number},
+    sgst:{type:Number},
+    tdsLfr:{type:Number},
+    totalLfrValue:{type:Number},//all above single prodict value and total
+    totCgst:{type:Number},//below sum total of all products
+    totSgst:{type:Number},
+    TotTdsLfrPayable:{type:Number},
+    totInvoiceAmt:{type:Number},
+    total:{type:Number},
+    totaSum:{type:Number},
+    totCgstSum:{type:Number},
+    totSgstSum:{type:Number},
+    totalLfrValueSum:{type:Number},
+    InvTotSum:{type:Number},
+
+
 },
 {
     versionKey:false
+},{
+timestamps:true
 })
 
 const ProductPetrolFeedingModel = mongoose.model("petrolInvoiceFedding", petrolInvoiceFeddingSchema) 

@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const petrolDecandationSchema = mongoose.Schema({
     invoice:{type:String, required:true},
     mskl:{type:Number, required:true},
+    speedkl:{type:Number, required:true},
     hsdkl:{type:Number, required:true},
     totalkl:{type:Number, required:true},
     tank1:{type:Number, required:true},

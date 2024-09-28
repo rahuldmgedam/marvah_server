@@ -32,9 +32,14 @@ const { Credit_Client_Router } = require("./routes/credit_client/credit_client.r
 
 const { addOilRouter } = require("./routes/oil/addOil.route")
 const { purchaseOilRouter } = require("./routes/oil/purchaseOil.route")
+
 const PetroCard = require("./routes/card/petroCard")
 const WalletRoutes = require("./routes/card/Wallet")
 const CreditRouter = require("./routes/credit_client/Credit")
+
+const { godownOilRouter } = require("./routes/oil/godownOil.route")
+const { retailOilRouter } = require("./routes/oil/retail.route")
+const { advancesRouter } = require("./routes/advances.route")
 
 
 require("dotenv").config()
@@ -82,16 +87,18 @@ app.use("/petroldecantation", PetrolDecantationRouter)
 app.use("/credit_client", Credit_Client_Router)
 app.use("/credit", CreditRouter)
 
-
 app.use("/purchaseoil", purchaseOilRouter)
 app.use("/petrocard", PetroCard);
 app.use("/wallet", WalletRoutes)
 
+app.use("/purchaseoil",purchaseOilRouter)
+app.use("/godownoil",godownOilRouter)
+app.use("/retailoil",retailOilRouter)
+app.use("/advances",advancesRouter)
 
 
 
-
-const port = 4000 || 4001
+const port = process.env.PORT || 4001
 
 app.get("/", (req, res) => {
    res.send("<h1>welcome to marwah server</h1>")

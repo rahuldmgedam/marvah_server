@@ -63,6 +63,10 @@ const mongoose = require("mongoose");
 const OilProductSchema = new mongoose.Schema({
   invoiceNo: Number,
   totInvAmt:Number,
+  otherDiscount:Number,
+  totalAmt2:Number,
+  totInvAmtAct:Number,
+  totStockAmt2:Number,
   purchaseOilDate: { type: Date, default: Date.now },
   srNo: Number,
   productName: String,
@@ -84,7 +88,6 @@ const OilProductSchema = new mongoose.Schema({
   totalAmt: Number,
   landingPrice: Number,
   difference: Number,
-  otherDiscount:Number,
   totStockAmt:Number
 
 },{timestamps:true});

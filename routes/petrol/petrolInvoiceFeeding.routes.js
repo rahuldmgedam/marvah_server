@@ -5,6 +5,8 @@ const {
   updatepetrolProductInvoiceFeeding,
   deletepetrolProductInvoiceFeeding,
   updatepetrolProductInvoiceFeedingshow,
+  newInvoiceEdit,
+  calSumTotals,
 } = require("../../controller/petrol/petrolInvoiceFeeding.controller");
 
 const ProductPetrolInvoiceFeedingRouter = express.Router();
@@ -25,6 +27,16 @@ ProductPetrolInvoiceFeedingRouter.patch(
 ProductPetrolInvoiceFeedingRouter.delete(
   "/delete/:id",
   deletepetrolProductInvoiceFeeding
+);
+
+ProductPetrolInvoiceFeedingRouter.patch(
+  "updatenew/:id",
+  newInvoiceEdit
+);
+
+ProductPetrolInvoiceFeedingRouter.post(
+  "/calSumTotals",
+  calSumTotals
 );
 
 module.exports = {
