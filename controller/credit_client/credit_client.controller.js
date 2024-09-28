@@ -4,8 +4,9 @@ const { CreditClientModel } = require("../../models/credit_client/credit_client.
 // here i am creating machine
 const create_credit_client = async (req, res) => {
     // logic
-  const data = req.body;
-  try {
+    try {
+      const data = req.body;
+      console.log("req.body ", req.body)
   
     const newData = new CreditClientModel(data);
     await newData.save();

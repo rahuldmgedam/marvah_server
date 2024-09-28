@@ -6,16 +6,11 @@ const msSchema = mongoose.Schema(
       type: String,
       default:new Date(),
       required: true,
-    },
-
-    
+    },    
     reading: {
       type: Number,
       required: true,
     },
-  
-
- 
   },
   {
     versionKey: false,
