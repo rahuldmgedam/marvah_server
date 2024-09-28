@@ -10,5 +10,5 @@ Credit_Client_Router.patch('/update/:id', update_credit_client);
 Credit_Client_Router.delete('/delete/:id', delete_credit_client);
 
 module.exports = {
-      Credit_Client_Router
+    Credit_Client_Router
 }

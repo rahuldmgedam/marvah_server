@@ -17,8 +17,8 @@ const getfuelSales =  async (req, res) => {
 
 // POST /save
 const saveFuelSales = async (req, res) => {
-    const tableData = req.body.ms1Readings;
-    // console.log("TableData : ", tableData);
+    const tableData = req.body;
+    console.log("TableData : ", tableData);
   
     try {
       await Promise.all(tableData.map(async (data) => {
