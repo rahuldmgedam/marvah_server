@@ -1,5 +1,5 @@
 const express = require("express");
-const { createHandloan, getAllHandloans, getHandloanById, updateHandloan, deleteHandloan } = require("../controller/handleLone.controller");
+const { createHandloan, getAllHandloans, getHandloanById, updateHandloan, deleteHandloan } = require("../controller/handlelone.controller");
 
 const handleLoneRouter = express.Router();
 
