@@ -36,6 +36,7 @@ const { purchaseOilRouter } = require("./routes/oil/purchaseOil.route")
 const PetroCard = require("./routes/card/petroCard")
 const WalletRoutes = require("./routes/card/Wallet")
 const CreditRouter = require("./routes/credit_client/Credit")
+const BankRouter = require("./routes/bank/Bank")
 
 const { godownOilRouter } = require("./routes/oil/godownOil.route")
 const { retailOilRouter } = require("./routes/oil/retail.route")
@@ -90,6 +91,7 @@ app.use("/credit", CreditRouter)
 app.use("/purchaseoil", purchaseOilRouter)
 app.use("/petrocard", PetroCard);
 app.use("/wallet", WalletRoutes)
+app.use("/bank", BankRouter)
 
 app.use("/purchaseoil",purchaseOilRouter)
 app.use("/godownoil",godownOilRouter)
