@@ -1,23 +1,29 @@
 const mongoose = require("mongoose");
 
-const PetroCardSchema = mongoose.Schema({
-    machineNo : {
+const BankSchema = mongoose.Schema({
+    BankName : {
         type: String,
         require: true,
         trim: true,
     },
-    cardId : {
+    AccountNumber : {
         type: String,
-        trim: true,
         require: true,
-    },
-    lastBatchNo : {
-        type: String,
         trim: true,
-        require: true,
     },
-    currentBatchNo : {
+    AccountName : {
         type: String,
+        require: true,
+        trim: true,
+    },
+    BranchName : {
+        type: String,
+        require: true,
+        trim: true,
+    },
+    AccountType : {
+        type: String,
+        require: true,
         trim: true,
     },
     date: {
@@ -25,15 +31,15 @@ const PetroCardSchema = mongoose.Schema({
         default : Date.now(),
     },
     status : {
-        type: String,
+        type: Boolean,
         trim: true,
+        default : true,
     },
     transaction : [{
         type : mongoose.Schema.ObjectId,
-        ref: "PetroCardTran",
+        ref: "BackTran",
     }],
 
 },{timestamps : true})
 
-
-module.exports = mongoose.model("PetroCard", PetroCardSchema);
+module.exports = mongoose.model("Bank", BankSchema);

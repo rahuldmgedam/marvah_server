@@ -5,7 +5,7 @@ exports.createPetroCard = async (req, res) => {
     try {
         const { machineNo, cardId, lastBatchNo } = req.body.data;
 
-        console.log("inside card ", req.body);
+        // console.log("inside card ", req.body);
 
         const data = await PetroCard.create({
             machineNo, cardId, lastBatchNo
@@ -21,6 +21,7 @@ exports.createPetroCard = async (req, res) => {
         })
     }
     catch (error) {
+        console.log("error ", error)
         return res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -145,7 +146,7 @@ exports.editPetroCard = async (req, res) => {
 
 exports.createPetroCardTran = async (req, res) => {
     try {
-        console.log("req.body : ", req.body);
+        // console.log("req.body : ", req.body);
         const { id, currentBatchNo, lastBatchNo, amount } = req.body
 
         if (!amount) {
@@ -200,8 +201,9 @@ exports.getPetroCardTran = async (req, res) => {
                 message: "PetroCard Data not Present"
             })
         }
+        
         return res.status(200).json({
-            success: false,
+            success: true,
             transactionData,
             message: "Data Fetch Successfully",
         })
