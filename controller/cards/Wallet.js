@@ -31,6 +31,8 @@ exports.CreateWallet = async (req, res) => {
 
 exports.getWalletData = async (req, res) => {
     try {
+
+        console.log("inside get wallet data");
         const walletData = await Wallet.find();
 
         if (!walletData) {
