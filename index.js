@@ -41,6 +41,7 @@ const BankRouter = require("./routes/bank/Bank")
 const { godownOilRouter } = require("./routes/oil/godownOil.route")
 const { retailOilRouter } = require("./routes/oil/retail.route")
 const { advancesRouter } = require("./routes/advances.route")
+const { staffSalaryRouter } = require("./routes/staffSalary/staffSalary.controller")
 
 
 require("dotenv").config()
@@ -97,7 +98,7 @@ app.use("/purchaseoil",purchaseOilRouter)
 app.use("/godownoil",godownOilRouter)
 app.use("/retailoil",retailOilRouter)
 app.use("/advances",advancesRouter)
-
+app.use("/staffSalary",staffSalaryRouter)
 
 
 const port = process.env.PORT || 4001
