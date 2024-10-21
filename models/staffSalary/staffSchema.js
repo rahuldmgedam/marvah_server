@@ -11,7 +11,10 @@ const staffSchema = new mongoose.Schema({
     workingDays: String,
     total: String,
     average: String,
-    salary: String
+    salary: String,
+    mscommission: Number,
+    spcommission: Number,
+    hsdcommission: Number,
   });
   
   // Create a model for staff
