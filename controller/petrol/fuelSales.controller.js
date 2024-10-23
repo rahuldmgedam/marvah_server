@@ -41,6 +41,7 @@ const saveFuelSales = async (req, res) => {
     await Promise.all(
       tableData.map(async (data) => {
         const machineReading = new fuelSalesModel(data);
+        console.log("machineReading:", machineReading);
         await machineReading.save();
       })
     );

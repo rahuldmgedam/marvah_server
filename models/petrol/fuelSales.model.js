@@ -17,6 +17,11 @@ const fuelSalesSchema = new Schema({
   rate: { type: Number },
   saleActTotal: { type: Number },
   totalAmount: { type: Number },
+    // Adding a reference to the Reading schema
+    reading: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Reading' 
+    }
 });
 
 module.exports = mongoose.model('fuelSale', fuelSalesSchema);

@@ -24,8 +24,13 @@ const readingSchema = mongoose.Schema(
         },
         closingReading:{
             type:Number,
-        }
+        },
+        fuelSale: { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'fuelSale' 
+          },
     },
+ 
     {
         versionKey:false,
     },

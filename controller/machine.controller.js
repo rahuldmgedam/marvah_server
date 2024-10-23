@@ -45,6 +45,46 @@ const createMachine = async (req, res) => {
 
 };
 
+const newMachineCreate =async  (req, res) => {
+    const machines = await Machine.find()
+    const {
+      machineNo,
+      make,
+      serialNo,
+      connectedTank,
+      product,
+      nozzlesInMPD,
+      sides,
+      nozzleLayout
+    } = req.body;
+  
+    // Basic validation
+    if (!machineNo || !make || !serialNo || !connectedTank || !product || !nozzlesInMPD) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+  
+    // Create a new machine object
+    const newMachine = {
+      machineNo,
+      make,
+      serialNo,
+      connectedTank,
+      product,
+      nozzlesInMPD,
+      sides: sides || [0, 0], // default value if not provided
+      nozzleLayout: nozzleLayout || [] // default value if not provided
+    };
+  
+    // Store the new machine in the array (Replace with DB save logic)
+    machines.push(newMachine);
+  
+    // Respond with success message
+    res.status(201).json({
+      message: 'New machine added successfully',
+      machine: newMachine
+    });
+  };
+
 
 
 // here i am showing machine to the user
@@ -98,6 +138,7 @@ const deleteMachine = async(req,res)=>{
 
 module.exports = {
     createMachine,
+    newMachineCreate,
     showMachine,
     updateMachine,
     deleteMachine,
