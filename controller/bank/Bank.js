@@ -136,9 +136,9 @@ exports.deleteBank = async (req, res) => {
 
 exports.createBankTran = async (req, res) => {
     try{
-        const {nerration, checkNo, BankId, amount, particulars, date} = req.body;
+        const {nerration, chequeNo, mode, BankId, amount, particulars, date} = req.body;
         console.log("req.body in bank tran ", req.body);
-        if(!nerration || !checkNo || !BankId || !amount || !particulars || !date) {
+        if(!BankId || !amount || !mode) {
             return res.status(400).json(({
                 success:false,
                 message: "All fileds are required",
@@ -153,7 +153,7 @@ exports.createBankTran = async (req, res) => {
             }))
         }
 
-        const newTran = await BankTran.create({checkNo, amount, nerration, particulars, date, bank: bank._id})
+        const newTran = await BankTran.create({chequeNo, amount, mode, nerration, particulars, date, bank: bank._id})
 
         if(!newTran) {
             return res.status(401).json(({
@@ -196,6 +196,69 @@ exports.getBankTranData = async (req, res) => {
             message: "Bank Transaction data Fetched successfully",
             bankTranData,
         })
+    } catch (error) {
+        console.log("error ", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
+    }
+}
+
+exports.updateBankTran = async (req, res) => {
+    try{
+        const {tranId, nerration, chequeNo, mode, BankId, amount, particulars, date} = req.body;
+        console.log("req.body in bank tran ", req.body);
+        if(!BankId || !amount || !mode || !tranId) {
+            return res.status(400).json(({
+                success:false,
+                message: "All fileds are required",
+            }))
+        }
+
+        const bank = await Bank.findById(BankId);
+        if(!bank) {
+            return res.status(400).json(({
+                success:false,
+                message: "Bank Not Present",
+            }))
+        }
+
+        const transaction = await BankTran.findById(tranId);
+
+        if(!transaction) {
+            return res.status(402).json(({
+                success:false,
+                message: "Transaction Not Present",
+            }))
+        }
+
+        const bankId = transaction?.bank;
+
+        const newTran = await BankTran.findByIdAndUpdate(tranId, {chequeNo, amount, mode, nerration, particulars, date, bank: bank._id})
+
+        if(!newTran) {
+            return res.status(401).json(({
+                success:false,
+                message: "Transaction Not Updated, Please try again",
+            }))
+        }
+
+        const updatedBank = await Bank.findByIdAndUpdate(
+            bankId,
+            { $pull: { transaction: new mongoose.Types.ObjectId(transaction._id) } }, // Correct instantiation of ObjectId
+            { new: true } // Return the updated 
+        );
+
+        bank.transaction.push(newTran._id);
+        await bank.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Transaction saved successfully",
+            newTran,
+        })
+
     } catch (error) {
         console.log("error ", error);
         return res.status(500).json({

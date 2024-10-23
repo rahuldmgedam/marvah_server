@@ -112,15 +112,15 @@ exports.editPetroCard = async (req, res) => {
                 message: "PetroCard Id is Required"
             })
         }
-
-        const newProCard = await PetroCard.findByIdAndUpdate(id, data, { new: true });
-
+        
         if (data.length === 0) {
             return res.status(403).json({
                 success: false,
                 message: "Nothing to Update, Data not Present for Update"
             })
         }
+        
+        const newProCard = await PetroCard.findByIdAndUpdate(id, data, { new: true });
 
         if (!newProCard) {
             return res.status(400).json({

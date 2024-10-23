@@ -6,10 +6,14 @@ const BankTranSchema = mongoose.Schema({
         ref: "Bank",
         require: true,
     },
-    checkNo: {
+    mode: {
+        type: String,
+        require: true,
+    },
+    chequeNo: {
         type: Number,
         // unique: true,
-        require: true,
+        // require: true,
     },
     amount: {
         type: Number,
@@ -18,12 +22,12 @@ const BankTranSchema = mongoose.Schema({
     },
     particulars : {
         type: String,
-        require: true,
+        // require: true,
         trim: true,
     },
     nerration : {
         type: String,
-        require: true,
+        // require: true,
         trim: true,
     },
     date: {
