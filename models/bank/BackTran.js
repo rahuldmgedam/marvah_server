@@ -6,6 +6,10 @@ const BankTranSchema = mongoose.Schema({
         ref: "Bank",
         require: true,
     },
+    tranType : {
+        type: String,
+        require: true,
+    },
     mode: {
         type: String,
         require: true,

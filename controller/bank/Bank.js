@@ -136,9 +136,9 @@ exports.deleteBank = async (req, res) => {
 
 exports.createBankTran = async (req, res) => {
     try{
-        const {nerration, chequeNo, mode, BankId, amount, particulars, date} = req.body;
+        const {nerration, tranType, chequeNo, mode, BankId, amount, particulars, date} = req.body;
         console.log("req.body in bank tran ", req.body);
-        if(!BankId || !amount || !mode) {
+        if(!BankId || !amount || !mode || !tranType) {
             return res.status(400).json(({
                 success:false,
                 message: "All fileds are required",
@@ -153,7 +153,7 @@ exports.createBankTran = async (req, res) => {
             }))
         }
 
-        const newTran = await BankTran.create({chequeNo, amount, mode, nerration, particulars, date, bank: bank._id})
+        const newTran = await BankTran.create({chequeNo, tranType, amount, mode, nerration, particulars, date, bank: bank._id})
 
         if(!newTran) {
             return res.status(401).json(({
@@ -207,9 +207,9 @@ exports.getBankTranData = async (req, res) => {
 
 exports.updateBankTran = async (req, res) => {
     try{
-        const {tranId, nerration, chequeNo, mode, BankId, amount, particulars, date} = req.body;
+        const {tranId, tranType, nerration, chequeNo, mode, BankId, amount, particulars, date} = req.body;
         console.log("req.body in bank tran ", req.body);
-        if(!BankId || !amount || !mode || !tranId) {
+        if(!BankId || !amount || !mode || !tranId, tranType) {
             return res.status(400).json(({
                 success:false,
                 message: "All fileds are required",
@@ -235,7 +235,7 @@ exports.updateBankTran = async (req, res) => {
 
         const bankId = transaction?.bank;
 
-        const newTran = await BankTran.findByIdAndUpdate(tranId, {chequeNo, amount, mode, nerration, particulars, date, bank: bank._id})
+        const newTran = await BankTran.findByIdAndUpdate(tranId, {chequeNo, tranType, amount, mode, nerration, particulars, date, bank: bank._id})
 
         if(!newTran) {
             return res.status(401).json(({
