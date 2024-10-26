@@ -6,6 +6,10 @@ const BankTranSchema = mongoose.Schema({
         ref: "Bank",
         require: true,
     },
+    tranType : {
+        type: String,
+        require: true,
+    },
     mode: {
         type: String,
         require: true,
@@ -19,6 +23,9 @@ const BankTranSchema = mongoose.Schema({
         type: Number,
         require: true,
         trim: true,
+    },
+    totalAmount : {
+        type: Number,
     },
     particulars : {
         type: String,
