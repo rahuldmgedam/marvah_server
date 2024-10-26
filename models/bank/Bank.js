@@ -26,6 +26,10 @@ const BankSchema = mongoose.Schema({
         require: true,
         trim: true,
     },
+    Amount: {
+        type: Number,
+        require: true,
+    },
     date: {
         type: Date,
         default : Date.now(),

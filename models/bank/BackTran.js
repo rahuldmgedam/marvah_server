@@ -24,6 +24,9 @@ const BankTranSchema = mongoose.Schema({
         require: true,
         trim: true,
     },
+    totalAmount : {
+        type: Number,
+    },
     particulars : {
         type: String,
         // require: true,
