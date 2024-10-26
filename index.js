@@ -100,6 +100,27 @@ app.use("/retailoil",retailOilRouter)
 app.use("/advances",advancesRouter)
 app.use("/staffSalary",staffSalaryRouter)
 
+const readings = {
+   lastDay: {
+     ms: 100,
+     speed: 101,
+     hsd: 102,
+   },
+   currentDay: {},
+ };
+ 
+ // API to get last day's readings
+ app.get('/last-day-readings', (req, res) => {
+   res.json(readings.lastDay);
+ });
+ 
+ // API to save current day's readings
+ app.post('/save-readings', (req, res) => {
+   const { date, ms, speed, hsd } = req.body;
+   readings.currentDay[date] = { ms, speed, hsd };
+   res.json({ message: 'Readings saved successfully!' });
+ });
+
 
 const port = process.env.PORT || 4001
 
