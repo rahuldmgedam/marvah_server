@@ -226,7 +226,6 @@ exports.createBankTran = async (req, res) => {
     }
 };
 
-
 exports.getBankTranData = async (req, res) => {
     try {
         const bankTranData = await BankTran.find().populate("bank").exec();

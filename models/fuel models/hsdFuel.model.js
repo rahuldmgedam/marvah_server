@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const hsdSchema = mongoose.Schema(
   {
     date: {
-      type: String,
+      type: Date,
       default:new Date(),
       required: true,
     },

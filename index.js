@@ -42,6 +42,7 @@ const { godownOilRouter } = require("./routes/oil/godownOil.route")
 const { retailOilRouter } = require("./routes/oil/retail.route")
 const { advancesRouter } = require("./routes/advances.route")
 const { staffSalaryRouter } = require("./routes/staffSalary/staffSalary.controller")
+const addPlannerRouter = require("./routes/planner/addPlanner.route")
 
 
 require("dotenv").config()
@@ -98,7 +99,8 @@ app.use("/purchaseoil",purchaseOilRouter)
 app.use("/godownoil",godownOilRouter)
 app.use("/retailoil",retailOilRouter)
 app.use("/advances",advancesRouter)
-app.use("/staffSalary",staffSalaryRouter)
+app.use("/staffSalary",staffSalaryRouter);
+app.use("/addPlanner", addPlannerRouter)
 
 const readings = {
    lastDay: {

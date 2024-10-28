@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const speedSchema = mongoose.Schema(
   {
     date: {
-      type: String,
+      type: Date,
       default:new Date(),
       required: true,
     },
