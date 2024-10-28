@@ -251,6 +251,36 @@ exports.getBankTranData = async (req, res) => {
     }
 }
 
+exports.getBankTranDataByDate = async (req, res) => {
+    try {
+        // Get the start and end of the current day
+        const startOfDay = new Date();
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date();
+        endOfDay.setHours(23, 59, 59, 999);
+
+        // Find transactions within today’s date range
+        const bankTranData = await BankTran.find({
+            date: { $gte: startOfDay, $lte: endOfDay },
+            tranType : "Deposit"
+        }).populate("bank").exec();
+
+        return res.status(200).json({
+            success: true,
+            message: "Data retrieved successfully",
+            bankTranData,
+        });
+    } catch (error) {
+        console.log("error", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
+    }
+};
+
+
 exports.updateBankTran = async (req, res) => {
     try {
         const { tranId, tranType, nerration, chequeNo, mode, BankId, amount, particulars, date } = req.body;
