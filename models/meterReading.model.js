@@ -8,7 +8,7 @@ const meterReadingSchema = new Schema(
       required: true,
     },
     date: {
-      type: String,
+      type: Date,
       default: new Date(),
     },
     nozzleNo: {

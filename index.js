@@ -57,7 +57,7 @@ app.use("/machine", MachineRouter)
 app.use("/reading", ReadinRouter);
 //using in m/c layout for 1, 2 side 
 
-app.use("/readingC", ReadingCRouter);
+// app.use("/readingC", ReadingCRouter);
 
 
 //fuels
@@ -67,14 +67,14 @@ app.use("/hsd", HsdRouter);
 
 app.use("/user", UserRouter)
 app.use("/machinelayout", MachineLayoutRouter)
-app.use("/mmwr", MWMRRouter)
+// app.use("/mmwr", MWMRRouter)
 
 // gagan code 
 app.use("/daystart", dayStartRouter)
 app.use("/handloan", handleLoneRouter)
 app.use("/client", clientRouter)
 
-app.use("/nozzleproductwise", nozzleproductwiseRouter)
+// app.use("/nozzleproductwise", nozzleproductwiseRouter)
 app.use("/fuelsales", fuelSalesRouter);
 
 app.use("/variation", variationRouter);

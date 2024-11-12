@@ -7,7 +7,7 @@ handleLoneRouter.post('/create', createHandloan);
 handleLoneRouter.get('/',getAllHandloans );
 handleLoneRouter.patch('/gethandloansbyid/:id', getHandloanById);
 handleLoneRouter.patch('/updatehandloans/:id', updateHandloan);
-handleLoneRouter.patch('/deletehandloans/:id', deleteHandloan);
+handleLoneRouter.delete('/deletehandloans/:id', deleteHandloan);
 
 
 module.exports = {
